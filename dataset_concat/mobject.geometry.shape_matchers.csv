@@ -1,0 +1,50 @@
+,prompt,code
+0,,"from manim import *
+
+class ExampleBackgroundRectangle(Scene):
+    def construct(self):
+        circle = Circle().shift(LEFT)
+        circle.set_stroke(color=GREEN, width=20)
+        triangle = Triangle().shift(2 * RIGHT)
+        triangle.set_fill(PINK, opacity=0.5)
+        backgroundRectangle1 = BackgroundRectangle(circle, color=WHITE, fill_opacity=0.15)
+        backgroundRectangle2 = BackgroundRectangle(triangle, color=WHITE, fill_opacity=0.15)
+        self.add(backgroundRectangle1)
+        self.add(backgroundRectangle2)
+        self.add(circle)
+        self.add(triangle)
+        self.play(Rotate(backgroundRectangle1, PI / 4))
+        self.play(Rotate(backgroundRectangle2, PI / 2))
+"
+0,,"from manim import *
+
+class SurroundingRectExample(Scene):
+    def construct(self):
+        title = Title(""A Quote from Newton"")
+        quote = Text(
+            ""If I have seen further than others, \n""
+            ""it is by standing upon the shoulders of giants."",
+            color=BLUE,
+        ).scale(0.75)
+        box = SurroundingRectangle(quote, color=YELLOW, buff=MED_LARGE_BUFF)
+
+        t2 = Tex(r""Hello World"").scale(1.5)
+        box2 = SurroundingRectangle(t2, corner_radius=0.2)
+        mobjects = VGroup(VGroup(box, quote), VGroup(t2, box2)).arrange(DOWN)
+        self.add(title, mobjects)
+"
+0,,"from manim import *
+
+class UnderLine(Scene):
+    def construct(self):
+        man = Tex(""Manim"")  # Full Word
+        ul = Underline(man)  # Underlining the word
+        self.add(man, ul)
+"
+0,,"from manim import *
+
+class ExampleCross(Scene):
+    def construct(self):
+        cross = Cross()
+        self.add(cross)
+"

@@ -1,0 +1,225 @@
+,prompt,code
+0,,"from manim import *
+
+class Example1Text(Scene):
+    def construct(self):
+        text = Text('Hello world').scale(3)
+        self.add(text)
+"
+1,,"from manim import *
+
+class TextColorExample(Scene):
+    def construct(self):
+        text1 = Text('Hello world', color=BLUE).scale(3)
+        text2 = Text('Hello world', gradient=(BLUE, GREEN)).scale(3).next_to(text1, DOWN)
+        self.add(text1, text2)
+"
+2,,"from manim import *
+
+class TextItalicAndBoldExample(Scene):
+    def construct(self):
+        text1 = Text(""Hello world"", slant=ITALIC)
+        text2 = Text(""Hello world"", t2s={'world':ITALIC})
+        text3 = Text(""Hello world"", weight=BOLD)
+        text4 = Text(""Hello world"", t2w={'world':BOLD})
+        text5 = Text(""Hello world"", t2c={'o':YELLOW}, disable_ligatures=True)
+        text6 = Text(
+            ""Visit us at docs.manim.community"",
+            t2c={""docs.manim.community"": YELLOW},
+            disable_ligatures=True,
+       )
+        text6.scale(1.3).shift(DOWN)
+        self.add(text1, text2, text3, text4, text5 , text6)
+        Group(*self.mobjects).arrange(DOWN, buff=.8).set_height(config.frame_height-LARGE_BUFF)
+"
+3,,"from manim import *
+
+class TextMoreCustomization(Scene):
+    def construct(self):
+        text1 = Text(
+            'Google',
+            t2c={'[:1]': '#3174f0', '[1:2]': '#e53125',
+                 '[2:3]': '#fbb003', '[3:4]': '#3174f0',
+                 '[4:5]': '#269a43', '[5:]': '#e53125'}, font_size=58).scale(3)
+        self.add(text1)
+"
+4,,"from manim import *
+
+class MultipleFonts(Scene):
+    def construct(self):
+        morning = Text(""வணக்கம்"", font=""sans-serif"")
+        japanese = Text(
+            ""日本へようこそ"", t2c={""日本"": BLUE}
+        )  # works same as ``Text``.
+        mess = Text(""Multi-Language"", weight=BOLD)
+        russ = Text(""Здравствуйте मस नम म "", font=""sans-serif"")
+        hin = Text(""नमस्ते"", font=""sans-serif"")
+        arb = Text(
+            ""صباح الخير \n تشرفت بمقابلتك"", font=""sans-serif""
+        )  # don't mix RTL and LTR languages nothing shows up then ;-)
+        chinese = Text(""臂猿「黛比」帶著孩子"", font=""sans-serif"")
+        self.add(morning, japanese, mess, russ, hin, arb, chinese)
+        for i,mobj in enumerate(self.mobjects):
+            mobj.shift(DOWN*(i-3))
+"
+5,,"from manim import *
+
+class PangoRender(Scene):
+    def construct(self):
+        morning = Text(""வணக்கம்"", font=""sans-serif"")
+        self.play(Write(morning))
+        self.wait(2)
+"
+0,,"from manim import *
+
+class MarkupExample(Scene):
+    def construct(self):
+        text = MarkupText('<span foreground=""blue"" size=""x-large"">Blue text</span> is <i>cool</i>!""')
+        self.add(text)
+"
+1,,"from manim import *
+
+class MarkupElaborateExample(Scene):
+    def construct(self):
+        text = MarkupText(
+            '<span foreground=""purple"">ا</span><span foreground=""red"">َ</span>'
+            'ل<span foreground=""blue"">ْ</span>ع<span foreground=""red"">َ</span>ر'
+            '<span foreground=""red"">َ</span>ب<span foreground=""red"">ِ</span>ي'
+            '<span foreground=""green"">ّ</span><span foreground=""red"">َ</span>ة'
+            '<span foreground=""blue"">ُ</span>'
+        )
+        self.add(text)
+"
+2,,"from manim import *
+
+class BasicMarkupExample(Scene):
+    def construct(self):
+        text1 = MarkupText(""<b>foo</b> <i>bar</i> <b><i>foobar</i></b>"")
+        text2 = MarkupText(""<s>foo</s> <u>bar</u> <big>big</big> <small>small</small>"")
+        text3 = MarkupText(""H<sub>2</sub>O and H<sub>3</sub>O<sup>+</sup>"")
+        text4 = MarkupText(""type <tt>help</tt> for help"")
+        text5 = MarkupText(
+            '<span underline=""double"">foo</span> <span underline=""error"">bar</span>'
+        )
+        group = VGroup(text1, text2, text3, text4, text5).arrange(DOWN)
+        self.add(group)
+"
+3,,"from manim import *
+
+class ColorExample(Scene):
+    def construct(self):
+        text1 = MarkupText(
+            f'all in red <span fgcolor=""{YELLOW}"">except this</span>', color=RED
+        )
+        text2 = MarkupText(""nice gradient"", gradient=(BLUE, GREEN))
+        text3 = MarkupText(
+            'nice <gradient from=""RED"" to=""YELLOW"">intermediate</gradient> gradient',
+            gradient=(BLUE, GREEN),
+        )
+        text4 = MarkupText(
+            'fl ligature <gradient from=""RED"" to=""YELLOW"">causing trouble</gradient> here'
+        )
+        text5 = MarkupText(
+            'fl ligature <gradient from=""RED"" to=""YELLOW"" offset=""1"">defeated</gradient> with offset'
+        )
+        text6 = MarkupText(
+            'fl ligature <gradient from=""RED"" to=""YELLOW"" offset=""1"">floating</gradient> inside'
+        )
+        text7 = MarkupText(
+            'fl ligature <gradient from=""RED"" to=""YELLOW"" offset=""1,1"">floating</gradient> inside'
+        )
+        group = VGroup(text1, text2, text3, text4, text5, text6, text7).arrange(DOWN)
+        self.add(group)
+"
+4,,"from manim import *
+
+class UnderlineExample(Scene):
+    def construct(self):
+        text1 = MarkupText(
+            '<span underline=""double"" underline_color=""green"">bla</span>'
+        )
+        text2 = MarkupText(
+            '<span underline=""single"" underline_color=""green"">xxx</span><gradient from=""#ffff00"" to=""RED"">aabb</gradient>y'
+        )
+        text3 = MarkupText(
+            '<span underline=""single"" underline_color=""green"">xxx</span><gradient from=""#ffff00"" to=""RED"" offset=""-1"">aabb</gradient>y'
+        )
+        text4 = MarkupText(
+            '<span underline=""double"" underline_color=""green"">xxx</span><gradient from=""#ffff00"" to=""RED"">aabb</gradient>y'
+        )
+        text5 = MarkupText(
+            '<span underline=""double"" underline_color=""green"">xxx</span><gradient from=""#ffff00"" to=""RED"" offset=""-2"">aabb</gradient>y'
+        )
+        group = VGroup(text1, text2, text3, text4, text5).arrange(DOWN)
+        self.add(group)
+"
+5,,"from manim import *
+
+class FontExample(Scene):
+    def construct(self):
+        text1 = MarkupText(
+            'all in sans <span font_family=""serif"">except this</span>', font=""sans""
+        )
+        text2 = MarkupText(
+            '<span font_family=""serif"">mixing</span> <span font_family=""sans"">fonts</span> <span font_family=""monospace"">is ugly</span>'
+        )
+        text3 = MarkupText(""special char > or &gt;"")
+        text4 = MarkupText(""special char &lt; and &amp;"")
+        group = VGroup(text1, text2, text3, text4).arrange(DOWN)
+        self.add(group)
+"
+6,,"from manim import *
+
+class NewlineExample(Scene):
+    def construct(self):
+        text = MarkupText('foooo<span foreground=""red"">oo\nbaa</span>aar')
+        self.add(text)
+"
+7,,"from manim import *
+
+class NoLigaturesExample(Scene):
+    def construct(self):
+        text1 = MarkupText('fl<gradient from=""RED"" to=""GREEN"">oat</gradient>ing')
+        text2 = MarkupText('fl<gradient from=""RED"" to=""GREEN"">oat</gradient>ing', disable_ligatures=True)
+        group = VGroup(text1, text2).arrange(DOWN)
+        self.add(group)
+"
+8,,"from manim import *
+
+class MultiLanguage(Scene):
+    def construct(self):
+        morning = MarkupText(""வணக்கம்"", font=""sans-serif"")
+        japanese = MarkupText(
+            '<span fgcolor=""blue"">日本</span>へようこそ'
+        )  # works as in ``Text``.
+        mess = MarkupText(""Multi-Language"", weight=BOLD)
+        russ = MarkupText(""Здравствуйте मस नम म "", font=""sans-serif"")
+        hin = MarkupText(""नमस्ते"", font=""sans-serif"")
+        chinese = MarkupText(""臂猿「黛比」帶著孩子"", font=""sans-serif"")
+        group = VGroup(morning, japanese, mess, russ, hin, chinese).arrange(DOWN)
+        self.add(group)
+"
+9,,"from manim import *
+
+class JustifyText(Scene):
+    def construct(self):
+        ipsum_text = (
+            ""Lorem ipsum dolor sit amet, consectetur adipiscing elit.""
+            ""Praesent feugiat metus sit amet iaculis pulvinar. Nulla posuere ""
+            ""quam a ex aliquam, eleifend consectetur tellus viverra. Aliquam ""
+            ""fermentum interdum justo, nec rutrum elit pretium ac. Nam quis ""
+            ""leo pulvinar, dignissim est at, venenatis nisi.""
+        )
+        justified_text = MarkupText(ipsum_text, justify=True).scale(0.4)
+        not_justified_text = MarkupText(ipsum_text, justify=False).scale(0.4)
+        just_title = Title(""Justified"")
+        njust_title = Title(""Not Justified"")
+        self.add(njust_title, not_justified_text)
+        self.play(
+            FadeOut(not_justified_text),
+            FadeIn(justified_text),
+            FadeOut(njust_title),
+            FadeIn(just_title),
+        )
+        self.wait(1)
+"

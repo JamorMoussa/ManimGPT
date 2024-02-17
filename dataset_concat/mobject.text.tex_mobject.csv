@@ -1,0 +1,28 @@
+,prompt,code
+0,,"from manim import *
+
+class BulletedListExample(Scene):
+    def construct(self):
+        blist = BulletedList(""Item 1"", ""Item 2"", ""Item 3"", height=2, width=2)
+        blist.set_color_by_tex(""Item 1"", RED)
+        blist.set_color_by_tex(""Item 2"", GREEN)
+        blist.set_color_by_tex(""Item 3"", BLUE)
+        self.add(blist)
+"
+0,,"from manim import *
+
+import manim
+
+class TitleExample(Scene):
+    def construct(self):
+        banner = ManimBanner()
+        title = Title(f""Manim version {manim.__version__}"")
+        self.add(banner, title)
+"
+0,,"from manim import *
+
+class Formula(Scene):
+    def construct(self):
+        t = MathTex(r""\int_a^b f'(x) dx = f(b)- f(a)"")
+        self.add(t)
+"
