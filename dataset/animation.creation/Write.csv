@@ -1,0 +1,13 @@
+prompt,code
+,"from manim import *
+
+class ShowWrite(Scene):
+    def construct(self):
+        self.play(Write(Text(""Hello"", font_size=144)))
+"
+,"from manim import *
+
+class ShowWriteReversed(Scene):
+    def construct(self):
+        self.play(Write(Text(""Hello"", font_size=144), reverse=True, remover=False))
+"

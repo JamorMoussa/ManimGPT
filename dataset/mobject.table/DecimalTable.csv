@@ -1,0 +1,14 @@
+prompt,code
+,"from manim import *
+
+class DecimalTableExample(Scene):
+    def construct(self):
+        x_vals = [-2,-1,0,1,2]
+        y_vals = np.exp(x_vals)
+        t0 = DecimalTable(
+            [x_vals, y_vals],
+            row_labels=[MathTex(""x""), MathTex(""f(x)=e^{x}"")],
+            h_buff=1,
+            element_to_mobject_config={""num_decimal_places"": 2})
+        self.add(t0)
+"

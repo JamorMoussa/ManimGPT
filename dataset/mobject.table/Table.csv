@@ -1,0 +1,264 @@
+prompt,code
+,"from manim import *
+
+class TableExamples(Scene):
+    def construct(self):
+        t0 = Table(
+            [[""This"", ""is a""],
+            [""simple"", ""Table in \n Manim.""]])
+        t1 = Table(
+            [[""This"", ""is a""],
+            [""simple"", ""Table.""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")])
+        t1.add_highlighted_cell((2,2), color=YELLOW)
+        t2 = Table(
+            [[""This"", ""is a""],
+            [""simple"", ""Table.""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")],
+            top_left_entry=Star().scale(0.3),
+            include_outer_lines=True,
+            arrange_in_grid_config={""cell_alignment"": RIGHT})
+        t2.add(t2.get_cell((2,2), color=RED))
+        t3 = Table(
+            [[""This"", ""is a""],
+            [""simple"", ""Table.""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")],
+            top_left_entry=Star().scale(0.3),
+            include_outer_lines=True,
+            line_config={""stroke_width"": 1, ""color"": YELLOW})
+        t3.remove(*t3.get_vertical_lines())
+        g = Group(
+            t0,t1,t2,t3
+        ).scale(0.7).arrange_in_grid(buff=1)
+        self.add(g)
+"
+,"from manim import *
+
+class BackgroundRectanglesExample(Scene):
+    def construct(self):
+        background = Rectangle(height=6.5, width=13)
+        background.set_fill(opacity=.5)
+        background.set_color([TEAL, RED, YELLOW])
+        self.add(background)
+        t0 = Table(
+            [[""This"", ""is a""],
+            [""simple"", ""Table.""]],
+            add_background_rectangles_to_entries=True)
+        t1 = Table(
+            [[""This"", ""is a""],
+            [""simple"", ""Table.""]],
+            include_background_rectangle=True)
+        g = Group(t0, t1).scale(0.7).arrange(buff=0.5)
+        self.add(g)
+"
+,"from manim import *
+
+class AddHighlightedCellExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")])
+        table.add_highlighted_cell((2,2), color=GREEN)
+        self.add(table)
+"
+,"from manim import *
+
+class CreateTableExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")],
+            include_outer_lines=True)
+        self.play(table.create())
+        self.wait()
+"
+,"from manim import *
+
+class GetCellExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")])
+        cell = table.get_cell((2,2), color=RED)
+        self.add(table, cell)
+"
+,"from manim import *
+
+class GetColLabelsExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")])
+        lab = table.get_col_labels()
+        for item in lab:
+            item.set_color(random_bright_color())
+        self.add(table)
+"
+,"from manim import *
+
+class GetColumnsExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")])
+        table.add(SurroundingRectangle(table.get_columns()[1]))
+        self.add(table)
+"
+,"from manim import *
+
+class GetEntriesExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")])
+        ent = table.get_entries()
+        for item in ent:
+            item.set_color(random_bright_color())
+        table.get_entries((2,2)).rotate(PI)
+        self.add(table)
+"
+,"from manim import *
+
+class GetEntriesWithoutLabelsExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")])
+        ent = table.get_entries_without_labels()
+        colors = [BLUE, GREEN, YELLOW, RED]
+        for k in range(len(colors)):
+            ent[k].set_color(colors[k])
+        table.get_entries_without_labels((2,2)).rotate(PI)
+        self.add(table)
+"
+,"from manim import *
+
+class GetHighlightedCellExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")])
+        highlight = table.get_highlighted_cell((2,2), color=GREEN)
+        table.add_to_back(highlight)
+        self.add(table)
+"
+,"from manim import *
+
+class GetHorizontalLinesExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")])
+        table.get_horizontal_lines().set_color(RED)
+        self.add(table)
+"
+,"from manim import *
+
+class GetLabelsExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")])
+        lab = table.get_labels()
+        colors = [BLUE, GREEN, YELLOW, RED]
+        for k in range(len(colors)):
+            lab[k].set_color(colors[k])
+        self.add(table)
+"
+,"from manim import *
+
+class GetRowLabelsExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")])
+        lab = table.get_row_labels()
+        for item in lab:
+            item.set_color(random_bright_color())
+        self.add(table)
+"
+,"from manim import *
+
+class GetRowsExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")])
+        table.add(SurroundingRectangle(table.get_rows()[1]))
+        self.add(table)
+"
+,"from manim import *
+
+class GetVerticalLinesExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")])
+        table.get_vertical_lines()[0].set_color(RED)
+        self.add(table)
+"
+,"from manim import *
+
+class MobjectScaleExample(Scene):
+    def construct(self):
+        f1 = Text(""F"")
+        f2 = Text(""F"").scale(2)
+        f3 = Text(""F"").scale(0.5)
+        f4 = Text(""F"").scale(-1)
+
+        vgroup = VGroup(f1, f2, f3, f4).arrange(6 * RIGHT)
+        self.add(vgroup)
+"
+,"from manim import *
+
+class SetColumnColorsExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")]
+        ).set_column_colors([RED,BLUE], GREEN)
+        self.add(table)
+"
+,"from manim import *
+
+class SetRowColorsExample(Scene):
+    def construct(self):
+        table = Table(
+            [[""First"", ""Second""],
+            [""Third"",""Fourth""]],
+            row_labels=[Text(""R1""), Text(""R2"")],
+            col_labels=[Text(""C1""), Text(""C2"")]
+        ).set_row_colors([RED,BLUE], GREEN)
+        self.add(table)
+"

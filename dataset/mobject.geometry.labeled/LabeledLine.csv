@@ -1,0 +1,18 @@
+prompt,code
+,"from manim import *
+
+class LabeledLineExample(Scene):
+    def construct(self):
+        line = LabeledLine(
+            label          = '0.5',
+            label_position = 0.8,
+            font_size      = 20,
+            label_color    = WHITE,
+            label_frame    = True,
+
+            start=LEFT+DOWN,
+            end=RIGHT+UP)
+
+        line.set_length(line.get_length() * 2)
+        self.add(line)
+"

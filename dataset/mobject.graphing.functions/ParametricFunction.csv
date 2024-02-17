@@ -1,0 +1,44 @@
+prompt,code
+,"from manim import *
+
+class PlotParametricFunction(Scene):
+    def func(self, t):
+        return np.array((np.sin(2 * t), np.sin(3 * t), 0))
+
+    def construct(self):
+        func = ParametricFunction(self.func, t_range = np.array([0, TAU]), fill_opacity=0).set_color(RED)
+        self.add(func.scale(3))
+"
+,"from manim import *
+
+class ThreeDParametricSpring(ThreeDScene):
+    def construct(self):
+        curve1 = ParametricFunction(
+            lambda u: np.array([
+                1.2 * np.cos(u),
+                1.2 * np.sin(u),
+                u * 0.05
+            ]), color=RED, t_range = np.array([-3*TAU, 5*TAU, 0.01])
+        ).set_shade_in_3d(True)
+        axes = ThreeDAxes()
+        self.add(axes, curve1)
+        self.set_camera_orientation(phi=80 * DEGREES, theta=-60 * DEGREES)
+        self.wait()
+"
+,"from manim import *
+
+class DiscontinuousExample(Scene):
+    def construct(self):
+        ax1 = NumberPlane((-3, 3), (-4, 4))
+        ax2 = NumberPlane((-3, 3), (-4, 4))
+        VGroup(ax1, ax2).arrange()
+        discontinuous_function = lambda x: (x ** 2 - 2) / (x ** 2 - 4)
+        incorrect = ax1.plot(discontinuous_function, color=RED)
+        correct = ax2.plot(
+            discontinuous_function,
+            discontinuities=[-2, 2],  # discontinuous points
+            dt=0.1,  # left and right tolerance of discontinuity
+            color=GREEN,
+        )
+        self.add(ax1, ax2, incorrect, correct)
+"
