@@ -1,0 +1,5 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/HP/Desktop/test/media/videos/test3/1080p60/partial_movie_files/AreaUnderCurveExample/3977891868_242631753_223132457.mp4'
+file 'file:C:/Users/HP/Desktop/test/media/videos/test3/1080p60/partial_movie_files/AreaUnderCurveExample/2852726489_3890345977_3656053451.mp4'
+file 'file:C:/Users/HP/Desktop/test/media/videos/test3/1080p60/partial_movie_files/AreaUnderCurveExample/2852726489_2988440545_1086769230.mp4'
+file 'file:C:/Users/HP/Desktop/test/media/videos/test3/1080p60/partial_movie_files/AreaUnderCurveExample/2852726489_1141282389_3136874015.mp4'
